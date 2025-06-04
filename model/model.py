@@ -36,7 +36,7 @@ class Model:
 
 
     def searchPath(self, source):
-        return list(nx.dfs_tree(self._graph, self._idMap[source]))
+        return list(nx.bfs_tree(self._graph, self._idMap[source]))
 
     def number_of_nodes(self):
         return self._graph.number_of_nodes()
@@ -58,10 +58,9 @@ class Model:
 
 
     def _ricorsione(self, parziale, nodiRimanenti, source):
-        actualScore = self._calculateScore(parziale)
-        if actualScore > self._maxScore:
+        if (actualScore := self._calculateScore(parziale)) > self._maxScore:
             self._maxScore = int(actualScore)
-            self._bestPath = parziale
+            self._bestPath = copy.deepcopy(parziale)
         else:
             for n in nx.neighbors(self._graph, source):
                 if n not in parziale:

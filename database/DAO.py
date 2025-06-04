@@ -58,8 +58,8 @@ class DAO():
                     and o1.store_id = %s 
                       AND o2.store_id = %s
                       AND o1.order_id != o2.order_id
-                      AND o1.order_date < o2.order_date
-                      AND DATEDIFF(o2.order_date, o1.order_date) < %s
+                      AND o1.order_date > o2.order_date
+                      AND DATEDIFF(o1.order_date, o2.order_date) < %s
                     group by o1.order_id, o2.order_id """
 
         cursor.execute(query, (store_id, store_id, nGiorniMax))
