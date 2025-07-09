@@ -1,7 +1,6 @@
 import copy
 
 import networkx as nx
-from networkx.algorithms.traversal import dfs_tree
 
 from database.DAO import DAO
 
